@@ -1,0 +1,26 @@
+
+
+  <div class="col-md-6">
+      <div class="panel panel-default" style="color:#666;">
+        <div class="panel-heading text-right" style="color:#666;height: 100px;overflow-y: auto">
+          <center> <h3><%= @quiz.title %><h3></center>
+        </div>
+        <div class="form-group">
+
+         <%= form_for [ @quiz, @reply ] do |f| %>
+         <br>
+          <%= f.fields_for :answers do |c| %>
+             <div class="form-group form-inline">
+              <br>
+              <%= render c.object.question.kind, c: c %>
+            </div>
+            <% end %>
+            <%= f.submit "Finalizar", class: "btn btn-primary" %>
+          <% end %>
+       </div>
+    </div>
+</div>
+
+
+
+ 

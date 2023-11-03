@@ -1,0 +1,95 @@
+<%if current_user.admin%>
+<div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading text-right">
+        <h3>Examen 1</h3>
+      </div>
+      <div class="panel-body">
+      	<h1><%= @chart_quiz1.title %></h1>
+		<%= pie_chart @chart_quiz1.count_replies.where.not(user_id:1).group(:title).count %>
+		
+      </div>
+  </div>
+</div>
+<div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading text-right">
+        <h3>Examen2</h3>
+      </div>
+      <div class="panel-body">
+      	<h1><%= @chart_quiz2.title %></h1><%= pie_chart @chart_quiz2.count_replies.where.not(user_id:1).group(:title).count %>
+      </div>
+  </div>
+</div>
+<div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading text-right">
+        <h3>Examen 3</h3>
+      </div>
+      <div class="panel-body">
+        <h1><%= @chart_quiz3.title %></h1>
+    <%= pie_chart @chart_quiz3.count_replies.where.not(user_id:1).group(:title).count %>
+    
+      </div>
+  </div>
+</div>
+<div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading text-right">
+        <h3>Examen2</h3>
+      </div>
+      <div class="panel-body">
+        <h1><%= @chart_quiz4.title %></h1><%= pie_chart @chart_quiz4.count_replies.where.not(user_id:1).group(:title).count %>
+      </div>
+  </div>
+</div>
+
+
+<%else%>
+<div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading text-right">
+        <h3>Examen 1</h3>
+      </div>
+      <div class="panel-body">
+      	<h1><%= @chart_quiz1.title %></h1>
+		<%= pie_chart @chart_quiz1.count_replies.where(user_id:current_user.id).group(:title).count %>
+		
+      </div>
+  </div>
+</div>
+<div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading text-right">
+        <h3>Examen2</h3>
+      </div>
+      <div class="panel-body">
+      	<h1><%= @chart_quiz2.title %></h1><%= pie_chart @chart_quiz2.count_replies.where(user_id:current_user.id).group(:title).count %>
+      </div>
+  </div>
+</div>
+<div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading text-right">
+        <h3>Examen 3</h3>
+      </div>
+      <div class="panel-body">
+        <h1><%= @chart_quiz3.title %></h1>
+    <%= pie_chart @chart_quiz3.count_replies.where(user_id:current_user.id).group(:title).count %>
+    
+      </div>
+  </div>
+</div>
+<div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading text-right">
+        <h3>Examen 4</h3>
+      </div>
+      <div class="panel-body">
+        <h1><%= @chart_quiz4.title %></h1><%= pie_chart @chart_quiz4.count_replies.where(user_id:current_user.id).group(:title).count %>
+      </div>
+  </div>
+</div>
+
+
+<%end%>

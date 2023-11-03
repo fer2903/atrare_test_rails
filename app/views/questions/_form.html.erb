@@ -1,0 +1,47 @@
+<%= form_for [@quiz, @question] do |f| %>
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% @question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :right_answer %><br>
+    <%= f.text_field :right_answer, class: "form-control" %>
+  </div>
+  <p>
+   <label>What kind of question?</label>
+ </p>
+ <div class="radio">
+   <% @kind_options.each do |option| %>
+     <label>
+       <%= f.radio_button :kind, option[1] %>
+       <%= option[0] %>
+     </label>
+   <% end %>
+ </div>
+ <p>
+
+<p>
+  <label>Specify some choices:</label>
+</p>
+<%= f.fields_for :possible_answers do |c| %>
+  <p>
+    <%= c.text_field :title, placeholder: "Type your choice", class: "form-control" %>
+  </p>
+<% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

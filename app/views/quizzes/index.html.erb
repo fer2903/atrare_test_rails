@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <% @quizzes.each do |quiz| %>
+        <h2 class="card-title"><%= link_to quiz.title, quiz %></h2>
+        <p class="card-text"></p>
+        <%= link_to 'Edit', edit_quiz_path(quiz), class: "btn btn-default" if current_user && current_user.admin? %>
+        <%= link_to 'Destroy', quiz, class: "btn btn-default", method: :delete, data: { confirm: 'Are you sure?' } if current_user && current_user.admin? %>
+        <%= link_to 'Add question', new_quiz_question_path(quiz), class: "btn btn-default" if current_user && current_user.admin? %>
+        <%= link_to 'Comenzar', new_quiz_reply_path(quiz), class: "btn btn-primary" %>
+        <%= link_to 'Archivos',href='https://drive.google.com/open?id=1D0F9JulOOz8xSN17yky6VWsrxcNyqY6n', class: "btn btn-primary" %>
+        <%= link_to 'Descargar Xlsx', quiz_quizzes_download_xlsx_path(quiz), class: "btn btn-default" %>
+        <%end%>
+        <%= link_to 'Graficas', quiz_charts_path(@quizzes), class: "btn btn-default"  %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<%= link_to 'Nuevo', new_quiz_path, class: "btn btn-primary" if current_user && current_user.admin? %>
+</p>
